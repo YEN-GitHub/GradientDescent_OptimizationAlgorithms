@@ -1,6 +1,6 @@
-# Date: 2018-08-03 17:12
+# Date: 2018-08-03 18:12
 # Author: Enneng Yang
-# Abstract：simple linear regression problem:Y=AX+B, optimization is momentum stochastic gradient descent
+# Abstract：simple linear regression problem:Y=AX+B, optimization is Nesterov accelerated gradient(NAG)
 
 import sys
 import numpy as np
@@ -78,7 +78,7 @@ plt.subplot(1, 2, 1)
 plt.contourf(ha, hb, hallSSE, 15, alpha=0.5, cmap=plt.cm.hot)
 C = plt.contour(ha, hb, hallSSE, 15, colors='blue')
 plt.clabel(C,inline=True)
-plt.title('momentum SGD')
+plt.title('NAG')
 plt.xlabel('opt param: a')
 plt.ylabel('opt param: b')
 
@@ -86,72 +86,78 @@ plt.ylabel('opt param: b')
 plt.ion() # iteration on
 
 
-a_sgd = a
-b_sgd = b
+a_nag = a
+b_nag = b
 
 all_loss = []
 all_step = []
-all_loss_sgd = []
-all_step_sgd = []
+all_loss_nag = []
+all_step_nag = []
 
 last_a = a
 last_b = b
-last_a_sgd = a_sgd
-last_b_sgd = b_sgd
+last_a_nag = a_nag
+last_b_nag = b_nag
 
 # momentum
 va = 0
 vb = 0
+va_nag = 0
+vb_nag = 0
 gamma = 0.9
 
 for step in range(1, 100):
     loss = 0
-    loss_sgd = 0
+    loss_nag = 0
 
     all_da = 0
     all_db = 0
-    all_da_sgd = 0
-    all_db_sgd = 0
+    all_da_nag = 0
+    all_db_nag = 0
+
+    a_ahead = a_nag - gamma * va_nag
+    b_ahead = b_nag - gamma * vb_nag
 
     shuffle_data(x,y)
     for i in range(0,1):
         y_p = a*x[i] + b
-        y_p_sgd = a_sgd * x[i] + b_sgd
+
+        y_p_nag = a_ahead * x[i] + b_ahead
 
         loss = (y[i] - y_p)*(y[i] - y_p)/2
-        loss_sgd = (y[i] - y_p_sgd)*(y[i] - y_p_sgd)/2
+        loss_nag = (y[i] - y_p_nag)*(y[i] - y_p_nag)/2
 
         all_da = da(y[i], y_p, x[i])
         all_db = db(y[i], y_p)
-        all_da_sgd = da(y[i], y_p_sgd, x[i])
-        all_db_sgd = db(y[i], y_p_sgd)
+        all_da_nag = da(y[i], y_p_nag, x[i])
+        all_db_nag = db(y[i], y_p_nag)
 
     # draw fig.1 contour line
     plt.subplot(1, 2, 1)
     plt.scatter(a, b, s=5, color='black')
     plt.plot([last_a, a], [last_b, b], color='red', label="momentum sgd")
-    plt.scatter(a_sgd, b_sgd, s=5, color='black')
-    plt.plot([last_a_sgd, a_sgd], [last_b_sgd, b_sgd], color='blue', label="sgd")
+    plt.scatter(a_nag, b_nag, s=5, color='black')
+    plt.plot([last_a_nag, a_nag], [last_b_nag, b_nag], color='orange', label="nag")
 
     # draw fig.2 loss line
     all_loss.append(loss)
-    all_loss_sgd.append(loss_sgd)
+    all_loss_nag.append(loss_nag)
 
     all_step.append(step)
-    all_step_sgd.append(step)
+    all_step_nag.append(step)
 
     plt.subplot(1, 2, 2)
     plt.plot(all_step, all_loss, color='red', label='momentum sgd')
-    plt.plot(all_step_sgd, all_loss_sgd, color='orange', label='sgd')
+    plt.plot(all_step_nag, all_loss_nag, color='orange', label='nag')
 
-    plt.title('momentum SGD')
+    plt.title('NAG')
     plt.xlabel("step")
     plt.ylabel("loss")
 
     last_a = a
     last_b = b
-    last_a_sgd = a_sgd
-    last_b_sgd = b_sgd
+    last_a_sgd = a_nag
+    last_b_sgd = b_nag
 
     # update param
     va = gamma * va + rate * all_da
@@ -159,8 +165,11 @@ for step in range(1, 100):
     a = a - va
     b = b - vb
 
-    a_sgd = a_sgd - rate * all_da_sgd
-    b_sgd = b_sgd - rate * all_db_sgd
+    va_nag = gamma * va_nag + rate * all_da_nag
+    vb_nag = gamma * vb_nag + rate * all_db_nag
+    a_nag = a_nag - va_nag
+    b_nag = b_nag - vb_nag
+
 
     if step % 5 == 0:
         print("step: ", step, " loss: ", loss, " a: ", a, " b: ", b)

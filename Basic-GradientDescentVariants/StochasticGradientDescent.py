@@ -43,7 +43,7 @@ def draw_hill(x,y):
     return [a,b,allSSE]
 
 def shuffle_data(x,y):
-    # 随机打乱x，y的数据，并且保持x和y一一对应
+    # random disturb x，y，while keep x_i corresponding to y_i
     seed = random.random()
     random.seed(seed)
     random.shuffle(x)
