@@ -17,7 +17,7 @@
 >> { } Algorithm: [.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction1-NoiseReductionMethod/WolfeCondition.py) <br>
 
 > Direction2-Variance Reduction Method:<br>
->> {  momentum stochastic gradient descent } Algorithm: MomentumStochasticGradientDescent[.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/MomentumStochasticGradientDescent.py) <br>
+>> {  momentum stochastic gradient descent } Algorithm: [MomentumStochasticGradientDescent.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/MomentumStochasticGradientDescent.py) <br>
 >> { } Algorithm: [.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/WolfeCondition.py) <br>
 
 > Direction3-Second Order Method:<br>
