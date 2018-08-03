@@ -1,6 +1,6 @@
-# StochasticGradient_Algorithm
+# Gradient Descent Optimization Algorithms
 ## Introduction: 
- Save my Stochastic Gradient optimization algorithm code <br><br>
+ Save my gradient optimization algorithms code. <br>
  
  SG improved in three ways: <br>
  > Direction1-Noise Reduction Method <br>
@@ -14,13 +14,13 @@
 >> {Mini-Batch Gradient Descent } Algorithm: [Mini-Batch_GradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Basic-GradientDescentVariants/Mini-Batch_GradientDescent.py) <br>
 
 > Direction1-Noise Reduction Method: <br>
->> { } Algorithm: [.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Direction1-NoiseReductionMethod/WolfeCondition.py) <br>
+>> { } Algorithm: [.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction1-NoiseReductionMethod/WolfeCondition.py) <br>
 
 > Direction2-Variance Reduction Method:<br>
->> { } Algorithm: [.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Direction2-VarianceReductionMethod/WolfeCondition.py) <br>
+>> { } Algorithm: [.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/WolfeCondition.py) <br>
 
 > Direction3-Second Order Method:<br>
->> { } Algorithm: [.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Direction3-SecondOrderMethod/WolfeCondition.py) <br>
+>> { } Algorithm: [.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction3-SecondOrderMethod/WolfeCondition.py) <br>
 
 ## References
 > Paper:  `Optimization Methods for Large-Scale Machine Learning`  <br>
