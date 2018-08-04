@@ -50,10 +50,18 @@ def shuffle_data(x,y):
     random.seed(seed)
     random.shuffle(y)
 
+def get_batch_data(x, y, batch=3):
+    shuffle_data(x, y)
+    x_new = x[0:batch]
+    y_new = y[0:batch]
+    return [x_new, y_new]
 
 # create simulated data
-x = [30, 35, 37, 59, 70, 76, 88, 100]
-y = [1100,	1423,	1377,	1800,	2304,	2588,	3495,	4839]
+# x = [30, 35, 37, 59, 70, 76, 88, 100]
+# y = [1100,	1423,	1377,	1800,	2304,	2588,	3495,	4839]
+a = np.loadtxt('../Data/LRdata.txt')
+x = a[:,1]
+y = a[:,2]
 
 # Data normalization
 x_max = max(x)
