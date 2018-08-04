@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-# 本代码是一个最简单的线形回归问题，优化函数为adagrad
-rate = 0.2 # learning rate
+# 本代码是一个最简单的线形回归问题，优化函数为adadelta
+epsilon = 1e-2
+gamma = 0.9
 def da(y,y_p,x):
     return (y-y_p)*(-x)
 
@@ -51,7 +52,7 @@ hallSSE = hallSSE.T# 重要，将所有的losses做一个转置。原因是矩�
 a = 10.0
 b = -20.0
 fig = plt.figure(1, figsize=(12, 8))
-fig.suptitle('learning rate: %.2f method: adagrad'%(rate), fontsize=15)
+fig.suptitle(' method: adadelta ε=%.4f, γ=%.2f'%(epsilon,gamma), fontsize=15)
 # 绘制图1的曲面
 ax = fig.add_subplot(2, 2, 1, projection='3d')
 ax.set_top_view()
@@ -74,17 +75,23 @@ all_step = []
 last_a = a
 last_b = b
 n = np.array([0,0])
-epsilon = 1e-8
-for step in range(1,500):
+theta = np.array([0,0]).astype(np.float32) # 每一次a,b迭代的更新值
+
+apple = np.array([0,0]).astype(np.float32)
+pear = np.array([0,0]).astype(np.float32)
+# 迭代
+for step in range(1,201):
     loss = 0
     all_da = 0
     all_db = 0
+    all_d = np.array([0,0]).astype(np.float32)
     for i in range(0,len(x)):
         y_p = a*x[i] + b
         loss = loss + (y[i] - y_p)*(y[i] - y_p)/2
         all_da = all_da + da(y[i],y_p,x[i])
         all_db = all_db + db(y[i],y_p)
     #loss_ = calc_loss(a = a,b=b,x=np.array(x),y=np.array(y))
+    all_d = np.array([all_da,all_db])
     loss = loss/len(x)
 
     # 绘制图1中的loss点
@@ -113,15 +120,17 @@ for step in range(1,500):
     last_b = b
 
     #-- 参数更新
-    n[0] = n[0]+np.square(all_da)
-    n[1] = n[1]+np.square(all_db)
-    rate_new = rate/(np.sqrt(n + epsilon))
-    print('rate_new a:',rate_new[0],' b:',rate_new[1])
-    a = a - (rate/(np.sqrt(n[0] + epsilon)))*all_da
-    b = b - (rate/(np.sqrt(n[1] + epsilon)))*all_db
+    apple = gamma*apple + (1-gamma)*(all_d**2) # apple with all_d of this step
+    rms_apple = np.sqrt(apple + epsilon)
+
+    pear = gamma*pear + (1-gamma)*(theta**2) # pear with theta of last step
+    rms_pear = np.sqrt(pear + epsilon)
+
+    theta = -(rms_pear/rms_apple)*all_d
+    [a,b] = [a,b] + theta
 
     if step%1 == 0:
-        print("step: ", step, " loss: ", loss)
+        print("step: ", step, " loss: ", loss,"rms_pear: ",rms_pear," rms_apple",rms_apple)
         plt.show()
         plt.pause(0.01)
 plt.show()
