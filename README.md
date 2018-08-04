@@ -21,6 +21,7 @@
 >> { Nesterov Accelerated Gradient } Algorithm: [NesterovAcceleratedGradient.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/NesterovAcceleratedGradient.py) <br>
 >> { Adagrad } Algorithm: [Adagrad.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/Adagrad.py) <br>
 >> { Adadelta } Algorithm: [Adadelta.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/Adadelta.py) <br>
+>> { RMSprop } Algorithm: [RMSprop.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/RMSprop.py) <br>
 
 > Direction3-Second Order Method:<br>
 >> { } Algorithm: [.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction3-SecondOrderMethod/WolfeCondition.py) <br>
