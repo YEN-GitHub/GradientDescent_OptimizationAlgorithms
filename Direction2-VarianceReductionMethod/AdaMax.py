@@ -1,6 +1,6 @@
-# Date: 2018-08-04 15:43
+# Date: 2018-08-04 19:43
 # Author: Enneng Yang
-# Abstract：simple linear regression problem:Y=AX+B, optimization is Adam
+# Abstract：simple linear regression problem:Y=AX+B, optimization is AdaMax
 
 import sys
 import matplotlib.pyplot as plt
@@ -8,9 +8,9 @@ from mpl_toolkits.mplot3d import Axes3D
 import random
 import numpy as np
 import tensorflow as tf
+from scipy.linalg.misc import norm
 
-
-rate = 2 # learning rate
+rate = 0.02 # learning rate
 beta1 = 0.9
 beta2 = 0.999
 epsilon = 1e-8
@@ -84,14 +84,14 @@ for i in range(0, len(x)):
 a = 10.0
 b = -20.0
 fig = plt.figure(1, figsize=(12, 8))
-fig.suptitle(' method: adam epsilon=%.8f, learning rate=%.2f, beta1=%.2f, beta2=%.3f'%(epsilon,rate,beta1,beta2), fontsize=15)
+fig.suptitle(' method: adamax epsilon=%.8f, learning rate=%.2f, beta1=%.2f, beta2=%.3f'%(epsilon,rate,beta1,beta2), fontsize=15)
 
 # draw fig.1 contour line
 plt.subplot(1, 2, 1)
 plt.contourf(ha, hb, hallSSE, 15, alpha=0.5, cmap=plt.cm.hot)
 C = plt.contour(ha, hb, hallSSE, 15, colors='blue')
 plt.clabel(C, inline=True)
-plt.title('Adam')
+plt.title('AdaMax')
 plt.xlabel('opt param: a')
 plt.ylabel('opt param: b')
 
@@ -129,16 +129,16 @@ for step in range(1, 100):
     # draw fig.1 contour line
     plt.subplot(1, 2, 1)
     plt.scatter(a, b, s=5, color='black')
-    plt.plot([last_a, a], [last_b, b], color='red', label="Adam")
+    plt.plot([last_a, a], [last_b, b], color='red', label="AdaMax")
 
     # draw fig.2 loss line
     all_loss.append(loss)
     all_step.append(step)
 
     plt.subplot(1, 2, 2)
-    plt.plot(all_step, all_loss, color='orange', label='Adam')
+    plt.plot(all_step, all_loss, color='orange', label='AdaMax')
 
-    plt.title('Adam')
+    plt.title('AdaMax')
     plt.xlabel("step")
     plt.ylabel("loss")
 
@@ -147,13 +147,17 @@ for step in range(1, 100):
 
     # update param
 
+
     m = beta1 * m + (1 - beta1) * all_d
-    v = beta2 * v + (1 - beta2) * (all_d ** 2)
+
+
+    v = max(beta2 * v, np.linalg.norm(all_d, np.inf))
+
 
     m_ = m / (1 - np.power(beta1, step))
     v_ = v / (1 - np.power(beta2, step))
 
-    theta = -(rate / (np.sqrt(v_) + epsilon)) * m_
+    theta = -( rate / ( v + epsilon)) * m_
 
     [a, b] = [a, b] + theta
 

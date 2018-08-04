@@ -23,6 +23,7 @@
 >> { Adadelta } Algorithm: [Adadelta.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/Adadelta.py) <br>
 >> { RMSprop } Algorithm: [RMSprop.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/RMSprop.py) <br>
 >> { Adam } Algorithm: [Adam.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/Adam.py) <br>
+>> { AdaMax } Algorithm: [AdaMax.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/AdaMax.py) <br>
 
 > Direction3-Second Order Method:<br>
 >> { } Algorithm: [.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction3-SecondOrderMethod/WolfeCondition.py) <br>
