@@ -1,9 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-# 本代码是一个最简单的线形回归问题，优化函数为adadelta
-epsilon = 1e-2
-gamma = 0.9
+# 本代码是一个最简单的线形回归问题，优化函数为adam
+# 该组参数是推荐的初始参数，一般来说可以解决大多数问题
+# 注：adam算法对于大规模的深度学习应用效果会更好，故在当前小规模的简单凸函数优化问题上收敛速度并不快
+rate = 0.001
+beta1 = 0.9
+beta2 = 0.999
+epsilon = 1e-8
 def da(y,y_p,x):
     return (y-y_p)*(-x)
 
@@ -52,7 +56,8 @@ hallSSE = hallSSE.T# 重要，将所有的losses做一个转置。原因是矩�
 a = 10.0
 b = -20.0
 fig = plt.figure(1, figsize=(12, 8))
-fig.suptitle(' method: adadelta ε=%.4f, γ=%.2f'%(epsilon,gamma), fontsize=15)
+fig.suptitle(' method: adam ε=%.4f, learning rate=%.2f, beta1=%.2f, beta2=%.3f'%(epsilon,rate,beta1,beta2), fontsize=15)
+
 # 绘制图1的曲面
 ax = fig.add_subplot(2, 2, 1, projection='3d')
 ax.set_top_view()
@@ -74,26 +79,20 @@ all_loss = []
 all_step = []
 last_a = a
 last_b = b
-n = np.array([0,0])
-theta = np.array([0,0]).astype(np.float32) # 每一次a,b迭代的更新值
-
-apple = np.array([0,0]).astype(np.float32)
-pear = np.array([0,0]).astype(np.float32)
-# 迭代
-for step in range(1,201):
+m = 0.0
+v = 0.0
+theta = np.array([0,0]).astype(np.float32)
+for step in range(1,500):
     loss = 0
     all_da = 0
     all_db = 0
-    all_d = np.array([0,0]).astype(np.float32)
     for i in range(0,len(x)):
         y_p = a*x[i] + b
         loss = loss + (y[i] - y_p)*(y[i] - y_p)/2
         all_da = all_da + da(y[i],y_p,x[i])
         all_db = all_db + db(y[i],y_p)
-    #loss_ = calc_loss(a = a,b=b,x=np.array(x),y=np.array(y))
-    all_d = np.array([all_da,all_db])
     loss = loss/len(x)
-
+    all_d = np.array([all_da,all_db]).astype(np.float32)
     # 绘制图1中的loss点
     ax.scatter(a, b, loss, color='black')
     # 绘制图2中的loss点
@@ -115,22 +114,26 @@ for step in range(1,201):
     plt.xlabel("step")
     plt.ylabel("loss")
 
+
     # print('a = %.3f,b = %.3f' % (a,b))
     last_a = a
     last_b = b
 
-    #-- 参数更新
-    apple = gamma*apple + (1-gamma)*(all_d**2) # apple with all_d of this step
-    rms_apple = np.sqrt(apple + epsilon)
+    m = beta1*m + (1-beta1)*all_d
+    v = beta2*v + (1-beta2)*(all_d**2)
 
-    pear = gamma*pear + (1-gamma)*(theta**2) # pear with theta of last step
-    rms_pear = np.sqrt(pear + epsilon)
+    m_ = m/(1 - beta1)
+    v_ = v/(1 - beta2)
 
-    theta = -(rms_pear/rms_apple)*all_d
+
+    theta = -(rate/(np.sqrt(v_) + epsilon))*m_
+
+
     [a,b] = [a,b] + theta
 
+
     if step%1 == 0:
-        print("step: ", step, " loss: ", loss,"rms_pear: ",rms_pear," rms_apple",rms_apple)
+        print("step: ", step, " loss: ", loss)
         plt.show()
         plt.pause(0.01)
 plt.show()

@@ -1,6 +1,6 @@
-# Date: 2018-08-04 18:43
+# Date: 2018-08-04 15:43
 # Author: Enneng Yang
-# Abstract：simple linear regression problem:Y=AX+B, optimization is RMSprop
+# Abstract：simple linear regression problem:Y=AX+B, optimization is Adadelta
 
 import sys
 import matplotlib.pyplot as plt
@@ -10,7 +10,11 @@ import numpy as np
 import tensorflow as tf
 
 
-rate = 0.01 # learning rate
+rate = 2 # learning rate
+beta1 = 0.9
+beta2 = 0.999
+epsilon = 1e-8
+
 def da(y, y_p,x):
     return (y-y_p)*(-x)
 
@@ -20,7 +24,7 @@ def db(y, y_p):
 def calc_loss(a,b,x,y):
     tmp = y - (a * x + b)
     tmp = tmp ** 2  # Square every element in the matrix
-    SSE = sum(tmp) / (2*len(x)) # Take the average
+    SSE = sum(tmp) / 2*len(x)# Take the average
     return SSE
 
 #draw all curve point
@@ -80,14 +84,14 @@ for i in range(0, len(x)):
 a = 10.0
 b = -20.0
 fig = plt.figure(1, figsize=(12, 8))
-# fig.suptitle('Adagrad, learning rate: %.2f'%(rate), fontsize=15)
+fig.suptitle(' method: adam epsilon=%.8f, learning rate=%.2f, beta1=%.2f, beta2=%.3f'%(epsilon,rate,beta1,beta2), fontsize=15)
 
 # draw fig.1 contour line
 plt.subplot(1, 2, 1)
 plt.contourf(ha, hb, hallSSE, 15, alpha=0.5, cmap=plt.cm.hot)
 C = plt.contour(ha, hb, hallSSE, 15, colors='blue')
 plt.clabel(C, inline=True)
-plt.title('RMSprop')
+plt.title('Adam')
 plt.xlabel('opt param: a')
 plt.ylabel('opt param: b')
 
@@ -101,12 +105,10 @@ all_step = []
 last_a = a
 last_b = b
 
-theta = np.array([0, 0]).astype(np.float32)
-E_grad = np.array([0, 0]).astype(np.float32)
-# E_theta = np.array([0, 0]).astype(np.float32)
+m = 0.0
+v = 0.0
 
-epsilon = 1e-2
-gamma = 0.9
+theta = np.array([0, 0]).astype(np.float32)
 
 for step in range(1, 100):
     loss = 0
@@ -115,7 +117,6 @@ for step in range(1, 100):
 
     shuffle_data(x, y)
     [x_new, y_new] = get_batch_data(x, y, batch=4)
-    all_d = np.array([0, 0]).astype(np.float32)
     for i in range(0, len(x_new)):
         y_p = a * x_new[i] + b
         loss += (y_new[i] - y_p) * (y_new[i] - y_p)/2
@@ -123,21 +124,21 @@ for step in range(1, 100):
         all_db += db(y_new[i], y_p)
 
     loss = loss / len(x_new)
-    all_d = np.array([all_da, all_db])
+    all_d = np.array([all_da, all_db]).astype(np.float32)
 
     # draw fig.1 contour line
     plt.subplot(1, 2, 1)
     plt.scatter(a, b, s=5, color='black')
-    plt.plot([last_a, a], [last_b, b], color='red', label="RMSprop")
+    plt.plot([last_a, a], [last_b, b], color='red', label="Adam")
 
     # draw fig.2 loss line
     all_loss.append(loss)
     all_step.append(step)
 
     plt.subplot(1, 2, 2)
-    plt.plot(all_step, all_loss, color='orange', label='RMSprop')
+    plt.plot(all_step, all_loss, color='orange', label='Adam')
 
-    plt.title('RMSprop')
+    plt.title('Adam')
     plt.xlabel("step")
     plt.ylabel("loss")
 
@@ -146,13 +147,14 @@ for step in range(1, 100):
 
     # update param
 
-    E_grad = gamma * E_grad + (1-gamma) * (all_d ** 2)
-    rms_grad = np.sqrt(E_grad + epsilon)
+    m = beta1 * m + (1 - beta1) * all_d
+    v = beta2 * v + (1 - beta2) * (all_d ** 2)
 
-    # E_theta = gamma * E_theta + (1-gamma) * (theta ** 2)
-    # rms_theta = np.sqrt(E_theta + epsilon)
+    m_ = m / (1 - np.power(beta1, step))
+    v_ = v / (1 - np.power(beta2, step))
 
-    theta = -( rate / rms_grad) * all_d
+    theta = -(rate / (np.sqrt(v_) + epsilon)) * m_
+
     [a, b] = [a, b] + theta
 
     if step % 1 == 0:
