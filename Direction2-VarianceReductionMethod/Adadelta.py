@@ -105,7 +105,7 @@ theta = np.array([0, 0]).astype(np.float32)
 E_grad = np.array([0, 0]).astype(np.float32)
 E_theta = np.array([0, 0]).astype(np.float32)
 
-epsilon = 1
+epsilon = 1e-1
 gamma = 0.99
 
 for step in range(1, 100):
