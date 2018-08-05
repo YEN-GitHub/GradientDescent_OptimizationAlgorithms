@@ -11,6 +11,7 @@ import time
 from math import sqrt
 import numpy as np
 from scipy import linalg
+import matplotlib.pyplot as plt
 
 rng = np.random.RandomState(42)
 m, n = 15, 20
@@ -21,38 +22,33 @@ A = rng.randn(m, n)  # random design
 x0 = rng.rand(n)
 x0[x0 < 0.9] = 0
 b = np.dot(A, x0)
-l = 0.5  # regularization parameter
+lambda_ = 0.5  # regularization parameter
 
 
-def soft_thresh(x, l):
-    return np.sign(x) * np.maximum(np.abs(x) - l, 0.)
+def soft_thresh(x, lambda_ ):
+    return np.sign(x) * np.maximum(np.abs(x) - lambda_, 0.)
 
 
 def ista(A, b, l, maxit):
     x = np.zeros(A.shape[1])
     pobj = []
     L = linalg.norm(A) ** 2  # Lipschitz constant
-    time0 = time.time()
-    for _ in range(maxit):
+
+    for itera in range(maxit):
         x = soft_thresh(x + np.dot(A.T, b - A.dot(x)) / L, l / L)
         this_pobj = 0.5 * linalg.norm(A.dot(x) - b) ** 2 + l * linalg.norm(x, 1)
-        pobj.append((time.time() - time0, this_pobj))
+        pobj.append((itera, this_pobj))
 
     times, pobj = map(np.array, zip(*pobj))
     return x, pobj, times
 
 
 
-maxit = 3000
-x_ista, pobj_ista, times_ista = ista(A, b, l, maxit)
+maxit = 100
+x_ista, pobj_ista, times_ista = ista(A, b, lambda_, maxit)
 
 
-import matplotlib.pyplot as plt
 plt.close('all')
-
-plt.figure()
-plt.stem(x0, markerfmt='go')
-plt.stem(x_ista, markerfmt='bo')
 
 plt.figure()
 plt.plot(times_ista, pobj_ista, label='ista')
