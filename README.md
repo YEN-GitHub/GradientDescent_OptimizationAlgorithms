@@ -29,11 +29,13 @@
 >> { } Algorithm: [.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction3-SecondOrderMethod/WolfeCondition.py) <br>
 
 > OptOptimizer Base On Tensorflow
->> { Optimizer_Comparison } Algorithm: [Optimizer_Comparison.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Optimizer_Comparison.py) <br>
->Basic-GradientDescentVariants:<br>
->> {Batch Gradient Descent } Algorithm: [BatchGradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/Basic-GradientDescentVariants/BatchGradientDescent.py) <br>
->> {Stochastic Gradient Descent } Algorithm: [StochasticGradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/Basic-GradientDescentVariants/StochasticGradientDescent.py) <br>
->> {Mini-Batch Gradient Descent } Algorithm: [Mini-Batch_GradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/Basic-GradientDescentVariants/Mini-Batch_GradientDescent.py) <br>
+>>compare:<br>
+>>> { Optimizer_Comparison } Algorithm: [Optimizer_Comparison.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Optimizer_Comparison.py) <br>
+
+>>Basic-GradientDescentVariants:<br>
+>>> { Batch Gradient Descent } Algorithm: [BatchGradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/Basic-GradientDescentVariants/BatchGradientDescent.py) <br>
+>>>{ Stochastic Gradient Descent } Algorithm: [StochasticGradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/Basic-GradientDescentVariants/StochasticGradientDescent.py) <br>
+>>> { Mini-Batch Gradient Descent } Algorithm: [Mini-Batch_GradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/Basic-GradientDescentVariants/Mini-Batch_GradientDescent.py) <br>
 
 
 ## References

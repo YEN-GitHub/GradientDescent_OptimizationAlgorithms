@@ -93,7 +93,7 @@ with tf.Session() as sess:
         epoch_cost = 0.
 
         total_batch = 256
-        writer = tf.summary.FileWriter("logs/", sess.graph)
+        # writer = tf.summary.FileWriter("logs/", sess.graph)
         # Loop over all batches
         for i in range(total_batch):
             # batch_x, batch_y = mnist.train.next_batch(batch_size)
