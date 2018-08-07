@@ -30,7 +30,6 @@ def ista(A, b, l, maxit):
     x = np.zeros(A.shape[1])
     pobj = []
     L = linalg.norm(A) ** 2  # Lipschitz constant
-    time0 = time.time()
     for itera in range(maxit):
         x = soft_thresh(x + np.dot(A.T, b - A.dot(x)) / L, l / L)
         this_pobj = 0.5 * linalg.norm(A.dot(x) - b) ** 2 + l * linalg.norm(x, 1)

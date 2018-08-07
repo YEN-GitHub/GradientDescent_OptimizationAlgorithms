@@ -12,8 +12,8 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("../Data/MNIST_data/", one_hot=True)
 
 # training Parameters
-learning_rate = 0.01
-training_epochs = 20
+learning_rate = 0.001
+training_epochs = 5
 batch_size = 5
 display_step = 1
 learning_momentum = 0.9
@@ -120,15 +120,23 @@ with tf.Session() as sess:
             _, c_GradientDescent = sess.run([optimizer_GradientDescent, cost], feed_dict={x: batch_x, y: batch_y})
 
             # Compute average loss
-            avg_cost_Adam += c_Adam / total_batch
-            avg_cost_Adadelta += c_Adadelta / total_batch
-            avg_cost_Adagrad += c_Adagrad / total_batch
-            avg_cost_Momentum += c_Momentum / total_batch
-            avg_cost_RMSProp += c_RMSProp / total_batch
-            avg_cost_GradientDescent += c_GradientDescent / total_batch
+            avg_cost_Adam += c_Adam
+            avg_cost_Adadelta += c_Adadelta
+            avg_cost_Adagrad += c_Adagrad
+            avg_cost_Momentum += c_Momentum
+            avg_cost_RMSProp += c_RMSProp
+            avg_cost_GradientDescent += c_GradientDescent
 
-        all_step.append(epoch)
+        # Compute average loss
+        avg_cost_Adam = avg_cost_Adam / total_batch
+        avg_cost_Adadelta = avg_cost_Adadelta / total_batch
+        avg_cost_Adagrad = avg_cost_Adagrad / total_batch
+        avg_cost_Momentum = avg_cost_Momentum / total_batch
+        avg_cost_RMSProp = avg_cost_RMSProp / total_batch
+        avg_cost_GradientDescent = avg_cost_GradientDescent / total_batch
+
         # opt loss
+        all_step.append(epoch)
         all_loss_Adam.append(avg_cost_Adam)
         all_loss_Adadelta.append(avg_cost_Adadelta)
         all_loss_Adagrad.append(avg_cost_Adagrad)
