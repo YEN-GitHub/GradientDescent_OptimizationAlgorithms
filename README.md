@@ -15,6 +15,8 @@
 >> {Mini-Batch Gradient Descent } Algorithm: [Mini-Batch_GradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Basic-GradientDescentVariants/Mini-Batch_GradientDescent.py) <br>
 
 > Direction1-Noise Reduction Method: <br>
+>> { ISTA } Algorithm: [ISTA.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction1-NoiseReductionMethod/ISTA.py) <br>
+>> { FISTA } Algorithm: [FISTA.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction1-NoiseReductionMethod/FISTA.py) <br>
 
 > Direction2-Variance Reduction Method:<br>
 >> {  momentum stochastic gradient descent } Algorithm: [MomentumStochasticGradientDescent.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Direction2-VarianceReductionMethod/MomentumStochasticGradientDescent.py) <br>
