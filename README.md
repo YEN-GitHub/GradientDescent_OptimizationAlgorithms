@@ -29,7 +29,7 @@
 
 > Direction3-Second Order Method:<br>
 
-### Used optimizer Base On Tensorflow
+### Used Tensorflow optimizer 
 >> { Optimizer method compare} Algorithm: [Optimizer_Comparison.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Optimizer_Comparison.py) <br>
 
 > Basic-GradientDescentVariants:<br>
