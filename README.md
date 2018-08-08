@@ -8,7 +8,7 @@
  > Direction3-Second Order Method (escaping saddle point) <br>
 
 ## Algorithm list：
-### Basic 
+### Basic Algorithm Implementation
 >Basic-GradientDescentVariants:<br>
 >> {Batch Gradient Descent } Algorithm: [BatchGradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Basic-GradientDescentVariants/BatchGradientDescent.py) <br>
 >> {Stochastic Gradient Descent } Algorithm: [StochasticGradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Basic-GradientDescentVariants/StochasticGradientDescent.py) <br>
@@ -29,7 +29,7 @@
 
 > Direction3-Second Order Method:<br>
 
-### Base On Tensorflow
+### Used optimizer Base On Tensorflow
 >> { Optimizer method compare} Algorithm: [Optimizer_Comparison.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Optimizer_Comparison.py) <br>
 
 > Basic-GradientDescentVariants:<br>
@@ -37,9 +37,17 @@
 >> { Stochastic Gradient Descent } Algorithm: [StochasticGradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/Basic-GradientDescentVariants/StochasticGradientDescent.py) <br>
 >> { Mini-Batch Gradient Descent } Algorithm: [Mini-Batch_GradientDescent.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/Basic-GradientDescentVariants/Mini-Batch_GradientDescent.py) <br>
 
+> Direction 2: Variance Reduction Method Based on Tesorflow
+>> { momentum stochastic gradient descent } Algorithm: [Momentum.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Momentum.py) <br>
+>> { Nesterov Accelerated Gradient } Algorithm: [Nesterov.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Nesterov.py) <br>
+
+### Optimizer Implementation Based on Tesorflow
+>> { PowerSign } Optimizer: [PowerSign.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/PowerSign.py) <br>
+>> { AddSign } Optimizer: [AddSign.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/AddSign.py) <br>
+>> { Test Optimizer } Algorithm: [TestOptimizer.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/TestOptimizer.py) <br>
 
 ## References
 > Paper:  `Optimization Methods for Large-Scale Machine Learning`  <br>
 > Paper:  `An Overview of Gradient Descent Optimization Algorithms`  <br>
-> Github user: `summersunshine1/optimize`   <br>
+> Blog: `Benoit Descamps:Custom Optimizer in TensorFlow`  <br>
 > Github user: `tsycnh/mlbasic`  <br>
