@@ -40,6 +40,8 @@
 > Direction 2: Variance Reduction Method Based on Tesorflow
 >> { momentum stochastic gradient descent } Algorithm: [Momentum.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Momentum.py) <br>
 >> { Nesterov Accelerated Gradient } Algorithm: [Nesterov.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Nesterov.py) <br>
+>> { Adadelta } Algorithm: [Adadelta.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Adadelta.py) <br>
+>> { Adagrad } Algorithm: [Adagrad.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Adagrad.py) <br>
 
 ### Optimizer Implementation Based on Tesorflow
 >> { PowerSign } Optimizer: [PowerSign.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/PowerSign.py) <br>
