@@ -1,6 +1,6 @@
 # Date: 2018-08-09 15:27
 # Author: Enneng Yang
-# Abstract：simple DNN problem, optimization is Adadelta
+# Abstract：simple DNN problem, optimization is RMSprop
 
 import sys
 import numpy as np
@@ -11,7 +11,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("../../Data/MNIST_data/", one_hot=True)
 
 # training Parameters
-learning_rate = 0.01
+learning_rate = 0.001
 training_epochs = 200
 batch_size = 256
 display_step = 1
@@ -61,7 +61,7 @@ def multilayer_perceptron(x, weights, biases):
         out_layer = tf.matmul(layer_2, weights['out']) + biases['out']
         return out_layer
 
-plt.title('Optimizer: Adadelta')
+plt.title('Optimizer: RMSprop')
 plt.xlabel('training_epochs')
 plt.ylabel('loss')
 
@@ -74,7 +74,7 @@ with tf.name_scope('cost'):
 
 # optimizer setting
 with tf.name_scope('optimizer'):
-    optimizer = tf.train.AdadeltaOptimizer(learning_rate=learning_rate).minimize(cost)
+    optimizer = tf.train.RMSPropOptimizer(learning_rate=learning_rate).minimize(cost)
 
 # Initializing the variables
 init = tf.global_variables_initializer()
@@ -117,7 +117,7 @@ with tf.Session() as sess:
 
     print("Optimization Finished!")
 
-plt.plot(all_step, all_loss, color='red', label='Adadelta')
+plt.plot(all_step, all_loss, color='red', label='RMSprop')
 plt.legend(loc='best')
 
 plt.show()
