@@ -1,6 +1,6 @@
 # Date: 2018-08-08 08:27
 # Author: Enneng Yang
-# Abstract：simple linear regression problem: DNN, optimization is Momentum
+# Abstract：simpleDNN problem , optimization is Momentum
 
 import sys
 import numpy as np
@@ -11,7 +11,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("../../Data/MNIST_data/", one_hot=True)
 
 # training Parameters
-learning_rate = 0.001
+learning_rate = 0.01
 training_epochs = 200
 batch_size = 256
 display_step = 1

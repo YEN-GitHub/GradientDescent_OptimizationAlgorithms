@@ -1,6 +1,6 @@
-# Date: 2018-08-08 10:18
+# Date: 2018-08-09 08:27
 # Author: Enneng Yang
-# Abstract：simple DNN problem, optimization is nesterov
+# Abstract：simple DNN problem, optimization is Adagrad
 
 import sys
 import numpy as np
@@ -61,7 +61,7 @@ def multilayer_perceptron(x, weights, biases):
         out_layer = tf.matmul(layer_2, weights['out']) + biases['out']
         return out_layer
 
-plt.title('Optimizer:nesterov')
+plt.title('Optimizer:Adagrad')
 plt.xlabel('training_epochs')
 plt.ylabel('loss')
 
@@ -74,7 +74,7 @@ with tf.name_scope('cost'):
 
 # optimizer setting
 with tf.name_scope('optimizer'):
-    optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=learning_momentum, use_nesterov=True).minimize(cost)
+    optimizer = tf.train.AdagradOptimizer(learning_rate=learning_rate).minimize(cost)
 
 # Initializing the variables
 init = tf.global_variables_initializer()
@@ -117,7 +117,7 @@ with tf.Session() as sess:
 
     print("Optimization Finished!")
 
-plt.plot(all_step, all_loss, color='red', label='nesterov')
+plt.plot(all_step, all_loss, color='red', label='Adagrad    ')
 plt.legend(loc='best')
 
 plt.show()

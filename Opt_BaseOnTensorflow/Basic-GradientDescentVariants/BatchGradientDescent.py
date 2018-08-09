@@ -11,8 +11,8 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("../../Data/MNIST_data/", one_hot=True)
 
 # training Parameters
-learning_rate = 0.001
-training_epochs = 500
+learning_rate = 0.01
+training_epochs = 200
 batch_size = int(mnist.train.num_examples)
 display_step = 1
 
