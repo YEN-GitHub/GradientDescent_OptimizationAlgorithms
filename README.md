@@ -45,10 +45,15 @@
 >> { RMSprop } Algorithm: [RMSprop.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/RMSprop.py) <br>
 >> { Adam } Algorithm: [Adam.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Adam.py) <br>
 >> { AdaMax } Algorithm: [AdaMax.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/AdaMax.py) <br>
+>> { Nadam } Algorithm: [Nadam.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Nadam.py) <br>
+>> { AddSign } Algorithm: [AddSign.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/AddSign.py) <br>
+>> { PowerSign } Algorithm: [PowerSign.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/PowerSign.py) <br>
+>> { AMSGrad } Algorithm: [AMSGrad.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/AMSGrad.py) <br>
 
 ### Optimizer Implementation Based on Tesorflow
 >> { PowerSign } Optimizer: [PowerSign.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/PowerSign.py) <br>
 >> { AddSign } Optimizer: [AddSign.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/AddSign.py) <br>
+>> { AMSGrad } Optimizer: [AMSGrad.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/AMSGrad.py) <br>
 >> { Test Optimizer } Algorithm: [TestOptimizer.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/TestOptimizer.py) <br>
 
 ## References

@@ -1,6 +1,6 @@
 # Date: 2018-08-08 08:27
 # Author: Enneng Yang
-# Abstract：simple linear regression problem: DNN, optimization is Momentum
+# Abstract：simple linear regression problem: DNN, optimization is PowerSign
 
 import sys
 import numpy as np
@@ -9,11 +9,9 @@ import tensorflow as tf
 from mpl_toolkits.mplot3d import Axes3D
 from tensorflow.examples.tutorials.mnist import input_data
 
-from Opt_BaseOnTensorflow.OptimizerImplementation.AddSign import AddSign
 from Opt_BaseOnTensorflow.OptimizerImplementation.PowerSign import PowerSign
-from Opt_BaseOnTensorflow.OptimizerImplementation.AMSGrad import AMSGradOptimizer
 
-mnist = input_data.read_data_sets("../../Data/MNIST_data/", one_hot=True)
+mnist = input_data.read_data_sets("Data/MNIST_data/", one_hot=True)
 
 # training Parameters
 learning_rate = 0.001
@@ -66,7 +64,7 @@ def multilayer_perceptron(x, weights, biases):
         out_layer = tf.matmul(layer_2, weights['out']) + biases['out']
         return out_layer
 
-plt.title('Optimizer:AMSGrad')
+plt.title('Optimizer:PowerSign')
 plt.xlabel('training_epochs')
 plt.ylabel('loss')
 
@@ -79,7 +77,7 @@ with tf.name_scope('cost'):
 
 # optimizer setting
 with tf.name_scope('optimizer'):
-    optimizer = AMSGradOptimizer(learning_rate=learning_rate).minimize(cost)
+    optimizer = PowerSign(learning_rate=learning_rate).minimize(cost)
 
 # Initializing the variables
 init = tf.global_variables_initializer()
@@ -122,7 +120,7 @@ with tf.Session() as sess:
 
     print("Optimization Finished!")
 
-plt.plot(all_step, all_loss, color='red', label='AMSGrad')
+plt.plot(all_step, all_loss, color='red', label='PowerSign')
 plt.legend(loc='best')
 
 plt.show()

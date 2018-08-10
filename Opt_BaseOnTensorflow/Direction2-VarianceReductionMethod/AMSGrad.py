@@ -1,6 +1,6 @@
-# Date: 2018-08-08 08:27
+# Date: 2018-08-10 21:27
 # Author: Enneng Yang
-# Abstract：simple linear regression problem: DNN, optimization is Momentum
+# Abstract：simple linear regression problem: DNN, optimization is AddSign
 
 import sys
 import numpy as np
@@ -9,11 +9,9 @@ import tensorflow as tf
 from mpl_toolkits.mplot3d import Axes3D
 from tensorflow.examples.tutorials.mnist import input_data
 
-from Opt_BaseOnTensorflow.OptimizerImplementation.AddSign import AddSign
-from Opt_BaseOnTensorflow.OptimizerImplementation.PowerSign import PowerSign
 from Opt_BaseOnTensorflow.OptimizerImplementation.AMSGrad import AMSGradOptimizer
 
-mnist = input_data.read_data_sets("../../Data/MNIST_data/", one_hot=True)
+mnist = input_data.read_data_sets("Data/MNIST_data/", one_hot=True)
 
 # training Parameters
 learning_rate = 0.001
