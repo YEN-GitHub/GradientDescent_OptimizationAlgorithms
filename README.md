@@ -44,6 +44,7 @@
 >> { Adagrad } Algorithm: [Adagrad.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Adagrad.py) <br>
 >> { RMSprop } Algorithm: [RMSprop.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/RMSprop.py) <br>
 >> { Adam } Algorithm: [Adam.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/Adam.py) <br>
+>> { AdaMax } Algorithm: [AdaMax.py](https://github.com/YEN-GitHub/GradientDescent_OptimizationAlgorithms/tree/master/Opt_BaseOnTensorflow/Direction2-VarianceReductionMethod/AdaMax.py) <br>
 
 ### Optimizer Implementation Based on Tesorflow
 >> { PowerSign } Optimizer: [PowerSign.py](https://github.com/YEN-GitHub/StochasticGradient_Algorithm/tree/master/Opt_BaseOnTensorflow/OptimizerImplementation/PowerSign.py) <br>
