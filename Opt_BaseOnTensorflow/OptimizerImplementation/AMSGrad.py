@@ -14,6 +14,9 @@ from tensorflow.python.training import optimizer
 
 class AMSGradOptimizer(optimizer.Optimizer):
 
+    '''
+    Implementation of AMSgrad ref: https://openreview.net/pdf?id=ryQu7f-RZ
+    '''
     def __init__(self, learning_rate=0.01, beta1=0.9, beta2=0.99, epsilon=1e-8, use_locking=False, name="AMSGrad"):
         super(AMSGradOptimizer, self).__init__(use_locking, name)
         self._lr = learning_rate
@@ -21,7 +24,7 @@ class AMSGradOptimizer(optimizer.Optimizer):
         self._beta2 = beta2
         self._epsilon = epsilon
 
-        # tensorflow var
+        #  Tensor versions of the constructor arguments, created in _prepare().
         self._lr_t = None
         self._beta1_t = None
         self._beta2_t = None
@@ -29,6 +32,14 @@ class AMSGradOptimizer(optimizer.Optimizer):
 
         self._beta1_power = None
         self._beta2_power = None
+
+
+    def _prepare(self):
+        self._lr_t = ops.convert_to_tensor(self._lr)
+        self._beta1_t = ops.convert_to_tensor(self._beta1)
+        self._beta2_t = ops.convert_to_tensor(self._beta2)
+        self._epsilon_t = ops.convert_to_tensor(self._epsilon)
+
 
     def _create_slots(self, var_list):
         first_var = min(var_list, key=lambda x: x.name)
@@ -48,11 +59,6 @@ class AMSGradOptimizer(optimizer.Optimizer):
             self._zeros_slot(v, "v", self._name)
             self._zeros_slot(v, "vhat", self._name)
 
-    def _prepare(self):
-        self._lr_t = ops.convert_to_tensor(self._lr)
-        self._beta1_t = ops.convert_to_tensor(self._beta1)
-        self._beta2_t = ops.convert_to_tensor(self._beta2)
-        self._epsilon_t = ops.convert_to_tensor(self._epsilon)
 
     def _apply_dense(self, grad, var):
         beta1_power = math_ops.cast(self._beta1_power, var.dtype.base_dtype)
