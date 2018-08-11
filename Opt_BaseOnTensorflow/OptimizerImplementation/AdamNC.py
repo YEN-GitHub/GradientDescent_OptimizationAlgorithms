@@ -41,13 +41,13 @@ class AdamNCOptimizer(optimizer.Optimizer):
         self._lr = learning_rate
         self._beta1 = beta1
         self._beta2 = beta2
-        self._eposilon = epsilon
+        self._epsilon = epsilon
 
         # Tensor versions of the constructor arguments, created in _prepare().
         self._lr_t = None
         self._beta1_t = None
         self._beta2_t = None
-        self._eposilon_t = None
+        self._epsilon_t = None
 
     def _create_slots(self, var_list):
         first_var = min(var_list, key= lambda x: x.name)

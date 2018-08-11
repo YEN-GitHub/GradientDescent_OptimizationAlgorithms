@@ -11,7 +11,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 
 from Opt_BaseOnTensorflow.OptimizerImplementation.AddSign import AddSign
 
-mnist = input_data.read_data_sets("Data/MNIST_data/", one_hot=True)
+mnist = input_data.read_data_sets("../../Data/MNIST_data/", one_hot=True)
 
 # training Parameters
 learning_rate = 0.001
